@@ -1,7 +1,7 @@
-         ctl-opt nomain alloc(*teraspace);                                      
+           ctl-opt nomain alloc(*teraspace);                                      
       //------------------------------------------------------------------//    
       //                                                                  //    
-      // Webservice Utilities                                             //    
+      // Webservice Utilities V1.3                                        //    
       //                                                                  //    
       //-----------------                                                 //    
       // R.Ross 08.2017 *                                                 //    
@@ -53,13 +53,13 @@
       //------------------------------------------------------------------//    
          dcl-proc parseQueryString;                                             
          dcl-pi *n;                                                             
-                 PiQrystr    like(GblQrystr) const options(*varsize:*trim);     
+                 PiQrystr    like(GblQrystr) const options(*varsize);           
          end-pi;                                                                
                                                                                 
          dcl-s   LocQrystr   like(GblQrystr);         // QueryString            
          dcl-s   LocPos1     uns(10);                 // Position 1             
          dcl-s   LocPos2     uns(10);                 // Position 2             
-         dcl-s   LocData     varchar(256);            // Data                   
+         dcl-s   LocData     like(GblQrystr);         // Data                   
          dcl-s   LocLen      uns(10);                 // Length                 
                                                                                 
            LocQrystr = PiQrystr + '&';                // QueryString + '&'      
@@ -83,15 +83,16 @@
       //------------------------------------------------------------------//    
          dcl-proc sepKeyValue;                                                  
          dcl-pi *n;                                                             
-                 PiData      like(GblQrystr) const options(*varsize:*trim);     
+                 PiData      like(GblQrystr) const options(*varsize);           
          end-pi;                                                                
                                                                                 
          dcl-s   LocPos      uns(10);                 // Position               
          dcl-s   LocValue    like(GblQrystr);         // Value                  
+         dcl-s   LocLen      uns(10);                 // Length                 
                                                                                 
            LocPos = %scan('=':PiData);                // Scan Separator '='     
                                                                                 
-           if LocPos > *zero;                         // Separator found        
+           if LocPos > *zero and LocPos < %len(PiData); // Separator found      
               KeyCounter += 1;                                                  
               DsKeyVal(KeyCounter).Key = %subst(PiData:1:LocPos - 1);           
                                                                                 
@@ -204,7 +205,7 @@
                    crlf;                                                        
            endif;                                                               
                                                                                 
-           return LocHeader;                          // HTTP-Header            
+           return LocHeader;                          // HTTP-Header             
                                                                                 
          end-proc;                                                              
-      //------------------------------------------------------------------//           
+      //------------------------------------------------------------------//     

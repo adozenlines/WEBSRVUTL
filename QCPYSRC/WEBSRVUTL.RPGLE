@@ -56,7 +56,7 @@
                                                                                 
          dcl-s   KeyCounter  uns(10);                                           
                                                                                 
-         dcl-ds  DsKeyVal    qualified dim(100) inz;                            
+         dcl-ds  DsKeyVal    qualified dim(5000) inz;                            
                   Key        like(GblKey);                                      
                   Value      pointer;                                           
                   Length     uns(10);                                           
@@ -78,7 +78,7 @@
          dcl-c   upper       0;                       // Upper                  
                                                                                 
       //------------------------------------------------------------------//    
-      // Variablen                                                        //    
+      // Variables                                                        //    
       //------------------------------------------------------------------//    
                                                                                 
          dcl-s   GblQrystr   varchar(1000000);        // Query-String           
