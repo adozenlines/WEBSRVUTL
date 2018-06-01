@@ -76,7 +76,7 @@ webix.ajax().post("/myapp/websrv01.pgm", {id:0},
 * Your Spoolfiles in the Browser www.myhofi.com/devhtm/spoolsorter.htm
 * You love Charts built with www.webix.com and www.highcharts.com www.myhofi.com/devhtm/charts.htm
 * You need urgent a Web Application with Gantt www.myhofi.com/devhtm/MyGantt.html
-* Data Management with Sidebar Menu, Google Maps and Language Selection www.myhofi.com/devhtm/sidebar.htm
+* Data Management with Sidebar Menu, Google Maps and Language Selection www.myhofi.com/devhtm/myapp.html
 
 ## Super simple to use
 * Read the HTTP Environment Variables `getenv()`
@@ -132,9 +132,9 @@ End-Mon;
 
 * The maxlength of a key is 128 bytes. The key can be upper case, lower case and mixed case
 * The maxlength of a value is 1,000,000 bytes
-* The maximal number of variables is 5000, when you need more variables then change https://github.com/RainerRoss/WEBSRVUTL/blob/master/QCPYSRC/WEBSRVUTL.RPGLE in line 59 to your own number of needed variables and create the Binding Directory and the Service Program `CALL PGM(WEBSRVUTL/WEBSRVUTLC)`
+* The maximal number of variables is 1000, when you need more variables then change https://github.com/RainerRoss/WEBSRVUTL/blob/master/QCPYSRC/WEBSRVUTL.RPGLE in line 59 to your own number of needed variables and create the Binding Directory and the Service Program `CALL PGM(WEBSRVUTL/WEBSRVUTLC)`
 ```
- dcl-ds DsKeyVal qualified dim(500) inz; 
+ dcl-ds DsKeyVal qualified dim(1000) inz; 
 ```
 * 
 
